@@ -1,11 +1,6 @@
 DEVICE_PATH := device/samsung/j4lte
 BOARD_VENDOR := samsung
 
-
-# Firmware
-TARGET_NO_BOOTLOADER := true
-TARGET_NO_RADIOIMAGE := true
-
 # Platform
 BOARD_VENDOR := samsung
 TARGET_BOOTLOADER_BOARD_NAME := universal7570
@@ -19,6 +14,28 @@ TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
 TARGET_CPU_VARIANT := cortex-a53
 TARGET_CPU_VARIANT_RUNTIME := cortex-a53
+
+# Bootloader
+BOARD_VENDOR := samsung
+TARGET_BOARD_PLATFORM := exynos5
+TARGET_SOC := exynos7570
+TARGET_BOOTLOADER_BOARD_NAME := universal7570
+TARGET_NO_BOOTLOADER := true
+TARGET_NO_RADIOIMAGE := true
+
+# Crypto
+TARGET_CRYPTFS_HW_PATH := vendor/qcom/opensource/commonsys/cryptfs_hw
+TARGET_HW_DISK_ENCRYPTION := false
+#TW_INCLUDE_CRYPTO := true
+#TW_INCLUDE_CRYPTO_FBE := true
+#TW_INCLUDE_FBE := true
+
+# Kernel
+TARGET_KERNEL_ARCH := arm64
+TARGET_KERNEL_HEADER_ARCH := arm64
+TARGET_KERNEL_HEADER_ARCH := arm64
+TARGET_KERNEL_CONFIG := exynos7570-on5xelte_defconfig
+TARGET_KERNEL_SOURCE := kernel/samsung/exynos7570
 
 # Binder
 TARGET_BOARD_SUFFIX := _64
@@ -55,7 +72,10 @@ TARGET_FS_CONFIG_GEN := $(LOCAL_PATH)/config.fs
 # Partitions
 BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
+TARGET_USERIMAGES_USE_EXT4 := true
 
+# LZMA
+LZMA_RAMDISK_TARGETS := recovery
 
 # Partitions
 BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
@@ -63,6 +83,13 @@ BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_FLASH_BLOCK_SIZE := 131072
 TARGET_USERIMAGES_USE_EXT4 := true
 BOARD_ROOT_EXTRA_FOLDERS := efs cpefs
+
+# exFAT FS Support
+TW_INCLUDE_FUSE_EXFAT := true
+
+# NTFS Support
+TW_INCLUDE_FUSE_NTFS := true
+
 
 # Vendor
 TARGET_COPY_OUT_VENDOR := vendor
@@ -161,5 +188,10 @@ VENDOR_SECURITY_PATCH := 2019-10-01
 DEVICE_MANIFEST_FILE := $(DEVICE_PATH)/manifest.xml
 DEVICE_MATRIX_FILE := $(DEVICE_PATH)/compatibility_matrix.xml
 DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE := $(DEVICE_PATH)/framework_compatibility_matrix.xml
+
+# Android Verified Boot
+BOARD_AVB_ENABLE := false
+BOARD_BUILD_DISABLED_VBMETAIMAGE := true
+
 
 -include vendor/samsung/j4lte/BoardConfigVendor.mk
