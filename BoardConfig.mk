@@ -1,6 +1,159 @@
 DEVICE_PATH := device/samsung/j4lte
 BOARD_VENDOR := samsung
 
+
+# Firmware
+TARGET_NO_BOOTLOADER := true
+TARGET_NO_RADIOIMAGE := true
+
+# Platform
+BOARD_VENDOR := samsung
+TARGET_BOOTLOADER_BOARD_NAME := universal7570
+TARGET_BOARD_PLATFORM := exynos5
+TARGET_SOC := exynos7570
+
+# Architecture
+TARGET_ARCH := arm
+TARGET_ARCH_VARIANT := armv8-a
+TARGET_CPU_ABI := armeabi-v7a
+TARGET_CPU_ABI2 := armeabi
+TARGET_CPU_VARIANT := cortex-a53
+TARGET_CPU_VARIANT_RUNTIME := cortex-a53
+
+# Binder
+TARGET_BOARD_SUFFIX := _64
+TARGET_USES_64_BIT_BINDER := true
+BUILD_BROKEN_DUP_RULES := true
+BUILD_BROKEN_PHONY_TARGETS := true
+
+# Extracted with libbootimg
+BOARD_CUSTOM_BOOTIMG := true
+BOARD_CUSTOM_BOOTIMG_MK := hardware/samsung/mkbootimg.mk
+BOARD_MKBOOTIMG_ARGS := --kernel_offset 0x10008000 --ramdisk_offset 0x11000000 --second_offset 0x10f00000 --tags_offset 0x10000100
+BOARD_KERNEL_BASE := 0x10000100
+BOARD_KERNEL_PAGESIZE := 2048
+
+BOARD_KERNEL_IMAGE_NAME := Image
+BOARD_KERNEL_SEPARATED_DT := true
+TARGET_CUSTOM_DTBTOOL := dtbhtoolExynos
+
+# Kernel
+TARGET_KERNEL_ARCH := arm64
+TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
+KERNEL_TOOLCHAIN := $(BUILD_TOP)/prebuilts/gcc/$(HOST_OS)-x86/aarch64/aarch64-linux-android-4.9/bin
+TARGET_LINUX_KERNEL_VERSION := 3.18
+
+# Kernel config
+TARGET_KERNEL_SOURCE := kernel/samsung/j4lte
+
+# Use these flags if the board has a ext4 partition larger than 2gb
+BOARD_HAS_LARGE_FILESYSTEM := true
+TARGET_USERIMAGES_USE_EXT4 := true
+
+TARGET_FS_CONFIG_GEN := $(LOCAL_PATH)/config.fs
+
+# Partitions
+BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
+BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
+
+
+# Partitions
+BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
+BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
+BOARD_FLASH_BLOCK_SIZE := 131072
+TARGET_USERIMAGES_USE_EXT4 := true
+BOARD_ROOT_EXTRA_FOLDERS := efs cpefs
+
+# Vendor
+TARGET_COPY_OUT_VENDOR := vendor
+
+# Audio
+USE_XML_AUDIO_POLICY_CONF := 1
+AUDIOSERVER_MULTILIB := 32
+
+# Backlight
+BACKLIGHT_PATH := "/sys/class/backlight/panel/brightness"
+
+# Camera
+BOARD_USE_SAMSUNG_CAMERAFORMAT_NV21 := true
+TARGET_USES_MEDIA_EXTENSIONS := true
+USE_DEVICE_SPECIFIC_CAMERA := true
+BOARD_BACK_CAMERA_SENSOR := 0
+BOARD_FRONT_CAMERA_SENSOR := 1
+
+# Device Tree
+BOARD_USES_DT := true
+
+# DRM
+TARGET_ENABLE_MEDIADRM_64 := true
+
+# HWComposer
+BOARD_HDMI_INCAPABLE := true
+BOARD_USES_DECON_64BIT_ADDRESS := true
+BOARD_USES_EXYNOS5_COMMON_GRALLOC := true
+BOARD_USES_HWC_SERVICES := true
+BOARD_USES_VPP := true
+MAX_EGL_CACHE_KEY_SIZE := 12*1024
+MAX_EGL_CACHE_SIZE := 2048*1024
+MAX_VIRTUAL_DISPLAY_DIMENSION := 2048
+NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
+TARGET_ADDITIONAL_GRALLOC_10_USAGE_BITS :=  0x2000
+TARGET_FORCE_HWC_FOR_VIRTUAL_DISPLAYS := true
+TARGET_USES_GRALLOC1 := true
+TARGET_USES_HWC2 := true
+TARGET_USES_ION := true
+TARGET_USES_NEW_ION_API :=true
+TARGET_USES_OVERLAY := true
+USE_OPENGL_RENDERER := true
+
+# Libhwui
+HWUI_COMPILE_FOR_PERF := true
+
+# Offline charge
+BOARD_CHARGING_MODE_BOOTING_LPM := "/sys/class/power_supply/battery/batt_lp_charging"
+BOARD_CHARGER_ENABLE_SUSPEND := true
+BOARD_CHARGER_SHOW_PERCENTAGE := true
+CHARGING_ENABLED_PATH := "/sys/class/power_supply/battery/batt_lp_charging"
+
+# OMX
+TARGET_OMX_LEGACY_RESCALING := true
+
+# Recovery
+BOARD_HAS_DOWNLOAD_MODE := true
+TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/rootdir/etc/fstab.recovery
+
+# Renderscript
+OVERRIDE_RS_DRIVER := libRSDriverArm.so
+
+# RIL
+BOARD_VENDOR := samsung
+BOARD_MODEM_TYPE := tss310
+BOARD_PROVIDES_LIBRIL := true
+ENABLE_VENDOR_RIL_SERVICE := true
+
+# Security patch level
+VENDOR_SECURITY_PATCH := 2020-09-01
+
+# Seccomp
+BOARD_SECCOMP_POLICY := $(LOCAL_PATH)/seccomp
+
+# SELinux
+BOARD_SEPOLICY_DIRS += device/samsung/universal7570-common/sepolicy
+BOARD_SEPOLICY_VERS := $(PLATFORM_SDK_VERSION).0
+
+# Treble
+BOARD_PROPERTY_OVERRIDES_SPLIT_ENABLED := true
+PRODUCT_FULL_TREBLE_OVERRIDE := true
+PRODUCT_VENDOR_MOVE_ENABLED := true
+BOARD_VNDK_VERSION := current
+
+# Shim
+TARGET_LD_SHIM_LIBS += \
+    /system/bin/mediaserver|/system/lib/libstagefright_shim.so
+
+# Wifi
+BOARD_HAVE_SAMSUNG_WIFI := true
+
 # Security patch level
 VENDOR_SECURITY_PATCH := 2019-10-01
 
